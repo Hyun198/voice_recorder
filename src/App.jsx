@@ -1,21 +1,24 @@
 import './App.css';
-import 'boxicons';
 import React, { useState } from 'react'
-import Header from './Header/header'
-import useSpeechToText from './useSpeechToText';
+import Header from './components/Header/Header'
+import Memo from './components/Memo/Memo'
+import Calc from './components/Calc/Calc'
+import Todo from './components/Todo/Todo'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 
 function App() {
-  const { transcript, listening, toggleListening } = useSpeechToText();
+
   return (
-    <>
+    <Router>
       <Header />
-      <div className='main-container'>
-        <textarea className="transcript" value={transcript} onChange={() => { }} />
-        <button onClick={toggleListening}>
-          {listening ? '음성인식 중지' : '음성인식 시작'}
-        </button>
-      </div>
-    </>
+      <Routes>
+        <Route path="/" />
+        <Route path="/calc" element={<Calc />} />
+        <Route path="/memo" element={<Memo />} />
+        <Route path="/todo" element={<Todo />} />
+      </Routes>
+    </Router>
   );
 }
 
